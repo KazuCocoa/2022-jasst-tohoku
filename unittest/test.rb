@@ -5,7 +5,7 @@ def plus(a, b)
 end
 
 class JaSSTTohoku < Minitest::Test
-  def test_calculate
+  def test_四則演算
     assert_equal plus(1, 2), 3
   end
 end

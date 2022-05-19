@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require 'appium_lib_core'
 
 class JaSSTTohoku < Minitest::Test
-  def test_calculate
+  def test_JaSST東北のWebページを開く
     core = ::Appium::Core.for capabilities: {
       platformName: :ios,
       automationName: :xcuitest,
