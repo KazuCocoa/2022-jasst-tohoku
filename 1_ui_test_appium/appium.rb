@@ -1,3 +1,13 @@
+# Appiumを使い、以下の操作を行う。
+#
+# ユーザはJaSST Tohokuのページの最下部まで到達したら最上部に戻りたい
+#
+# 1. Webブラウザを開く
+# 2. https://jasst.jp/symposium/jasst22tohoku.html を入力する
+# 3. 最下部までスクロールする
+# 4. 最上部まで戻る
+#
+
 require 'minitest/autorun'
 require 'appium_lib_core'
 
@@ -16,18 +26,21 @@ class JaSSTTohoku < Minitest::Test
 
   # 実際はよりシナリオを読みやすくするなどの工夫を行うことが多い
   def test_JaSST東北のWebページを開いてスクロールする
+    # Safariを起動する
     @driver = @core.start_driver server_url: 'http://localhost:4723'
 
+    # JaSST TohokuのURLを開く
     @driver.get 'https://jasst.jp/symposium/jasst22tohoku.html'
 
-    @driver.wait_true { |d| @driver.available_contexts.size >= 2 }
-    @driver.context = @driver.available_contexts[-1]
+    # Appiumの処理
+    @driver.wait_true { |d| d.available_contexts.size >= 2 }
+    @driver.context = @driver.available_contexts.last
 
     # JaSST TohokuのURLが表示されるまで待つ
     assert @driver.wait_true { |d| d.current_url == 'https://jasst.jp/symposium/jasst22tohoku.html' }
 
-    # 3 回下方向にクロール
-    3.times { scroll @driver }
+    # 最下部まですクロールする
+    scroll_to_bottom
 
     # "PAGE TOP" のマークをタップ
     @driver.context = 'NATIVE_APP'
@@ -43,6 +56,10 @@ class JaSSTTohoku < Minitest::Test
   end
 
   private
+
+  def scroll_to_bottom
+    3.times { scroll }
+  end
 
   def scroll
     return if @driver.nil?
