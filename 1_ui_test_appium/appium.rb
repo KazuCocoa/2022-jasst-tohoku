@@ -17,9 +17,10 @@ class JaSSTTohoku < Minitest::Test
     @core = ::Appium::Core.for capabilities: {
       platformName: :ios,
       automationName: :xcuitest,
-      platformVersion: '15.0',
+      platformVersion: '15.5',
       deviceName: 'iPhone 12 Pro',
       browserName: :safari
+
     }
     @driver = nil
   end
@@ -42,13 +43,10 @@ class JaSSTTohoku < Minitest::Test
     # 最下部まですクロールする
     scroll_to_bottom
 
-    # "PAGE TOP" のマークをタップ
-    @driver.context = 'NATIVE_APP'
-    @driver.wait { |d| d.find_element :accessibility_id, 'PAGE TOP' }.click
+    @driver.wait { |d| d.find_element :class, 'pagetop' }.click
 
     # 画面に "JaSST開催概要" の要素が表示されていることを確認する
-    e = @driver.wait { |d| d.find_element :accessibility_id, 'JaSST開催概要' }
-    assert @driver.wait_true { e.displayed? }
+    assert @driver.wait_true { |d| d.find_element(:link_text, 'JaSST開催概要').displayed? }
   end
 
   def teardown
