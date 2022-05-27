@@ -1,3 +1,7 @@
+#
+# 特に外部との通信もないメソッドのテスト
+#
+
 require 'minitest/autorun'
 
 def plus(a, b)
