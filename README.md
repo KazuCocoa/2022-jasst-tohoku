@@ -1,14 +1,56 @@
 # jasst-tohoku
-a couple of demo in the talk
 
-## Appiumのインストール
+デモ環境
 
-```
-npm install -g appium@next
-```
+## 準備
 
-## Start an appium instance
+### Appiumのインストール
 
 ```
-DEVELOPER_DIR=/Applications/Xcode_13.4.app/Contents/Developer  appium
+$ npm install -g appium@next
+```
+
+(`npm`コマンドのインストールは検索してみてください)
+
+### Appiumを起動する
+
+```
+$ appium
+```
+
+## 実行
+
+### 1_ui_test_appium
+
+macOSが必要です
+
+```
+$ cd 1_ui_test_appium
+$ bundle install
+$ bundle exec ruby appium.rb
+```
+
+### 2_integrate_network_real
+
+```
+$ cd 2_integrate_network_real
+$ bundle install
+$ bundle exec ruby network.rb
+```
+
+### 3_unit_network_stub
+
+```
+$ cd 3_unit_network_stub
+$ bundle install
+$ bundle exec ruby network.rb
+```
+
+
+### 4_unit
+
+```
+$ cd 4_unit
+$ bundle install
+$ bundle exec ruby test.rb
 ```
