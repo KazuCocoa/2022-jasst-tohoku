@@ -1,6 +1,6 @@
-# jasst-tohoku
+# 2022 JaSST Tohoku
 
-デモ環境
+デモ環境 for https://www.jasst.jp/symposium/jasst22tohoku.html
 
 ## 準備
 
